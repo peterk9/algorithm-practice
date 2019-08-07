@@ -1,3 +1,0 @@
-function niaveStringSearch(long, short) {
-
-}
