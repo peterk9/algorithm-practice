@@ -35,5 +35,5 @@ function merge(arr1, arr2) {
 }
 
 //console.log(merge([1, 10, 50], [2, 14, 99, 100]))
-let results = mergesort([1, 10, 22, 50, 2, 14, 99, 100])
+let results = mergesort([90, 1000, 220, 50, 2, 14, 99, 100])
 console.log(results)
