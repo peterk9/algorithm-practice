@@ -118,21 +118,20 @@ class SinglyLinkedList {
     }
 
     reverse() {
-        // swap
-        let tempHead = this.head;
-        this.head = this.tail;
-        this.tail = tempHead;
-
-        let current = this.head;
-        let next = current.next;
         let previous = null;
-
-        while (next) {
-            current.next = previous;
-            previous = current;
+        let current = this.head;
+        let next = null;
+        while (current != null) {
             next = current.next;
+            current.next = previous
+            previous = current;
+            current = next;
         }
+        this.head = previous;
+    }
 
+    recursiveReverse() {
+        // perform
     }
 
     print() {
@@ -143,5 +142,23 @@ class SinglyLinkedList {
             current = current.next;
         }
         console.log(arr);
+        console.log(`head ${JSON.stringify(this.head)} \ntail ${JSON.stringify(this.tail)}`)
     }
 }
+
+let list = new SinglyLinkedList();
+
+let node1 = new Node(4);
+let node2 = new Node(1);
+let node3 = new Node(6);
+
+node1.next = node2;
+node2.next = node3;
+
+list.head = node1;
+
+list.print()
+
+list.reverse();
+
+list.print();
