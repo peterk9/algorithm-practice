@@ -44,3 +44,5 @@ function buy_and_sell(arr) {
 }
 
 console.log(buy_and_sell([9, 11, 8, 5, 7, 10]));
+
+//TODO: look for better solution
