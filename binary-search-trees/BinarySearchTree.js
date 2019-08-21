@@ -43,6 +43,71 @@ class BinarySearchTree {
         }
         return false;
     }
+
+    bfs() {
+        let queue = [];
+        let data = [];
+        let current = this.root;
+        queue.push(current);
+        while (queue.length) {
+            current = queue.shift();
+            data.push(current.value);
+            if (current.left) queue.push(current.left);
+            if (current.right) queue.push(current.right);
+        }
+        return data;
+    }
+
+    dfsPreOrder() {
+        let stack = [];
+        let data = [];
+        let current = this.root;
+        stack.push(current);
+        while (stack.length) {
+            current = stack.pop();
+            data.push(current.value);
+            if (current.right) stack.push(current.right);
+            if (current.left) stack.push(current.left);
+        }
+        return data;
+    }
+
+    dfsPreOrderRecursive() {
+        let data = [];
+        function traverse(node) {
+            data.push(node.value);
+            if (node.left) traverse(node.left);
+            if (node.right) traverse(node.right);
+        }
+        traverse(this.root);
+        return data;
+    }
+
+    dfsPostOrderRecursive() {
+        let data = [];
+        function traverse(node) {
+            if (node.left) traverse(node.left);
+            if (node.right) traverse(node.right);
+            data.push(node.value);
+        }
+        traverse(this.root);
+        return data;
+    }
+
+    dfsInOrderRecursive() {
+        let data = [];
+        function traverse(node) {
+            node.left && traverse(node.left);
+            data.push(node.value);
+            node.right && traverse(node.right);
+        }
+        traverse(this.root);
+        return data;
+    }
+
+    // note: can use a current variable as a starting point if you do not want to traverse the whole tree,
+    // just the sub tree.
+
 }
 
 let bst = new BinarySearchTree();
@@ -50,17 +115,14 @@ let bst = new BinarySearchTree();
 bst.insert(10);
 bst.insert(6);
 bst.insert(3);
-bst.insert(4);
+bst.insert(8);
 bst.insert(15);
 bst.insert(20);
 
-console.log(bst);
+console.log(`${bst.bfs()} - bfs iterative`);
+console.log(`${bst.dfsPreOrder()} - dfsPreOrder iterative`);
+console.log(`${bst.dfsPreOrderRecursive()} - dfsPreOrder recursive `);
+console.log(`${bst.dfsPostOrderRecursive()} - dfsPostOrder recursive `);
+console.log(`${bst.dfsInOrderRecursive()} - dfsInOrder recursive `);
 
-console.log(bst.find(10));
-console.log(bst.find(6));
-console.log(bst.find(3));
-console.log(bst.find(4));
-console.log(bst.find(15));
-console.log(bst.find(19));
-console.log(bst.find(20));
-console.log(bst.find(21));
+

@@ -52,3 +52,27 @@ function ReverseString2(str) {
 function ReverseString3(str) {
     return [...str].reverse().join('')
 }
+
+// fastest reversal
+
+function reverseString5(s) {
+    if (s.length < 2) return s;
+    let reversed = s.split('');
+    let start = 0;
+    let end = s.length - 1;
+    while (start <= end) {
+        if (reversed[start] != reversed[end])
+            swap(reversed, start, end);
+        start++;
+        end--;
+    }
+    return reversed.join('');
+}
+
+function swap(arr, i, j) {
+    let temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+}
+
+console.log(reverseString5("Hello World!"));
